@@ -23,12 +23,13 @@ struct CPUData
 class CPU
 {
 public:
+    //Позволяет оценить загруженность процессора и его ядер с интервалом в millisecond в течение second_of_show секунд
+    void ShowCPULoad2(int64_t millisecond, int64_t second_of_show);
+private:
     // Считывает файл "/proc/stat", и берет нужную информацию о процессоре и ядрах
     std::vector<CPUData> CPUdata_info();
     // //Основываясь на информации о состоянии ядра процессора рассчитает его загруженность
     long double CPUload(CPUData& start, CPUData& end);
     // Позволяет оценить загруженность процессора и его ядер с промежутком в millisecond милисекунд
     void ShowCPULoad1(int64_t millisecond);
-    //Позволяет оценить загруженность процессора и его ядер с интервалом в millisecond в течение second_of_show секунд
-    void ShowCPULoad2(int64_t millisecond, int64_t second_of_show);
 };

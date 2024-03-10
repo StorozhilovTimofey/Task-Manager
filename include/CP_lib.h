@@ -31,5 +31,4 @@ public:
     void ShowCPULoad1(int64_t millisecond);
     //Позволяет оценить загруженность процессора и его ядер с интервалом в millisecond в течение second_of_show секунд
     void ShowCPULoad2(int64_t millisecond, int64_t second_of_show);
-private:
 };

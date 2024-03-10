@@ -59,7 +59,7 @@ void CPU::ShowCPULoad1(int64_t millisecond)
     std::cout << std::endl;
 }
 
-void ShowCPULoad2(int64_t millisecond, int64_t second_of_show)
+void CPU::ShowCPULoad2(int64_t millisecond, int64_t second_of_show)
 {
     if (millisecond < 1 || second_of_show < 1)
     {
@@ -72,7 +72,10 @@ void ShowCPULoad2(int64_t millisecond, int64_t second_of_show)
             ShowCPULoad1(millisecond);
         }
     }
-    else{ //Возникает вопрос что делать, если user хочет посмотреть загруженность раз в 10 миллисекунд, это слишком часто, ниже решение этого вопроса
+    // Возникает вопрос что делать, если user хочет посмотреть загруженность раз в 10 миллисекунд,
+    // это слишком часто, ниже решение этого вопроса
+    else
+    { 
         int32_t d = 100/millisecond + 1;
         long double k = (long double)second_of_show*1000.0/(long double)millisecond;
         std::vector<std::vector<CPUData>> MyVector(d);

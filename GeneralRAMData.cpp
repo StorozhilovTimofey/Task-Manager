@@ -26,23 +26,17 @@ std::string exec(const char* cmd)
 
 std::string writeMemoryInfoToFile()
 {
-    // Execute the dmidecode command to retrieve memory information
     std::string memoryInfo = exec("sudo dmidecode --type memory");
-
-    // Write the memory information to a new file
     std::ofstream file("memory_info.txt");
     file << "Memory Information:\n" << memoryInfo << std::endl;
     file.close();
 
-    // Return the file path
     return "memory_info.txt";
 }
 
 void removeLeadingSpaces(std::string& str)
 {
     size_t pos = 0;
-    
-    // Находим первый непробельный символ
     for (size_t i = 0; i < str.length(); i++) 
     {
         if (!std::isspace(str.at(i))) 
@@ -51,8 +45,6 @@ void removeLeadingSpaces(std::string& str)
             break;
         }
     }
-    
-    // Удаляем все пробелы до первого непробельного символа
     str = str.substr(pos);
 }
 

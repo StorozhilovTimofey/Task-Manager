@@ -67,6 +67,12 @@ std::string GetFirstWord(const std::string& line)
     return word;
 }
 
+void deleteFile(const std::string& filename) 
+{
+    std::string command = "rm -f " + filename; // создаем строку команды для удаления файла
+    int result = std::system(command.c_str()); // вызываем команду через системный вызов
+}
+
 void printMatchingLines(const std::vector<std::string>& lineStarts, const std::vector<std::string>& ignoredStarts, const std::string& filename) 
 {
     std::ifstream file(filename);
@@ -132,6 +138,7 @@ int main()
     "Serial Number: Not Specified"
     };
     printMatchingLines(Allowed, Exception, filePath);
+    deleteFile("memory_info.txt");
 
     return 0;
 }

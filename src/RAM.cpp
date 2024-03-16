@@ -1,14 +1,15 @@
-#include <iostream>
+#include <string>
+#include <array>
 #include <cstdio>
 #include <memory>
-#include <array>
 #include <fstream>
 #include <sstream>
+#include <iostream>
 #include <vector>
 
-int counter = 1;
+#include "RAM.h"
 
-std::string exec(const char* cmd)
+std::string RAM::exec(const char* cmd)
 {
     std::array<char, 128> buffer;
     std::string result;
@@ -24,25 +25,17 @@ std::string exec(const char* cmd)
     return result;
 }
 
-std::string writeMemoryInfoToFile()
+void RAM::createFile()
 {
-    // Execute the dmidecode command to retrieve memory information
     std::string memoryInfo = exec("sudo dmidecode --type memory");
-
-    // Write the memory information to a new file
-    std::ofstream file("memory_info.txt");
+    std::ofstream file(filePath);
     file << "Memory Information:\n" << memoryInfo << std::endl;
     file.close();
-
-    // Return the file path
-    return "memory_info.txt";
 }
 
-void removeLeadingSpaces(std::string& str)
+void RAM::removeLeadingSpaces(std::string& str)
 {
     size_t pos = 0;
-    
-    // Находим первый непробельный символ
     for (size_t i = 0; i < str.length(); i++) 
     {
         if (!std::isspace(str.at(i))) 
@@ -51,12 +44,10 @@ void removeLeadingSpaces(std::string& str)
             break;
         }
     }
-    
-    // Удаляем все пробелы до первого непробельного символа
     str = str.substr(pos);
 }
 
-std::string GetFirstWord(const std::string& line)
+std::string RAM::GetFirstWord(const std::string& line)
 {   
     std::string word;
     for (char ch : line)
@@ -67,15 +58,15 @@ std::string GetFirstWord(const std::string& line)
     return word;
 }
 
-void deleteFile(const std::string& filename)
+void RAM::deleteFile()
 {
-    std::string command = "rm -f " + filename; // создаем строку команды для удаления файла
-    int result = std::system(command.c_str()); // вызываем команду через системный вызов
+    std::string command = "rm -f " + filePath;
+    int result = std::system(command.c_str());
 }
 
-void printMatchingLines(const std::vector<std::string>& lineStarts, const std::vector<std::string>& ignoredStarts, const std::string& filename) 
+void RAM::printMatchingLines() 
 {
-    std::ifstream file(filename);
+    std::ifstream file(filePath);
     if (file.is_open()) 
     {   
         std::cout << "#" << counter << ":" << std::endl;
@@ -114,31 +105,5 @@ void printMatchingLines(const std::vector<std::string>& lineStarts, const std::v
         }
         file.close();
     } 
-    else { std::cerr << "Unable to open file: " << filename << std::endl; }
-}
-
-int main()
-{
-    // Write memory information to a new file and get the file path
-    std::string filePath = writeMemoryInfoToFile();
-    std::vector<std::string> Allowed = 
-    {
-    "Size: ", 
-    "Type: ",
-    "Speed: ",
-    "Manufacturer: ",
-    "Serial Number: "
-    };
-    std::vector<std::string> Exception = 
-    {
-    "Size: No Module Installed",
-    "Type: Unknown",
-    "Speed: Unknown",
-    "Manufacturer: Not Specified",
-    "Serial Number: Not Specified"
-    };
-    printMatchingLines(Allowed, Exception, filePath);
-    deleteFile("memory_info.txt");
-
-    return 0;
+    else { std::cerr << "Unable to open file: " << filePath << std::endl; }
 }

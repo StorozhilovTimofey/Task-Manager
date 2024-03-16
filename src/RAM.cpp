@@ -11,14 +11,14 @@
 
 std::string RAM::exec(const char* cmd)
 {
-    std::array<char, 128> buffer;
-    std::string result;
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
-    if (!pipe) 
+    std::array<char, 128> buffer; // Массив для чтения вывода выполненной команды
+    std::string result; // Результат выполнения команды
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose); // Умный указатель для управления процессом, выполняющим команду
+    if (!pipe) // Проверка открытия процесса
     {
         throw std::runtime_error("popen() failed!");
     }
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) 
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) // Чтение строк из процесса в буфер
     {
         result += buffer.data();
     }
@@ -27,7 +27,7 @@ std::string RAM::exec(const char* cmd)
 
 void RAM::createFile()
 {
-    std::string memoryInfo = exec("sudo dmidecode --type memory");
+    std::string memoryInfo = exec("sudo dmidecode --type memory"); // Запуск процесса
     std::ofstream file(filePath);
     file << "Memory Information:\n" << memoryInfo << std::endl;
     file.close();
@@ -38,18 +38,18 @@ void RAM::removeLeadingSpaces(std::string& str)
     size_t pos = 0;
     for (size_t i = 0; i < str.length(); i++) 
     {
-        if (!std::isspace(str.at(i))) 
+        if (!std::isspace(str.at(i))) // Проверка на пробел
         {
-            pos = i;
+            pos = i; // Если не пробел, то позиция обновляется значением индекса
             break;
         }
     }
-    str = str.substr(pos);
+    str = str.substr(pos); // Обрезание начала строки до pos
 }
 
 std::string RAM::GetFirstWord(const std::string& line)
 {   
-    std::string word;
+    std::string word; // Результат
     for (char ch : line)
     {
         if (ch == ' ') { return word; }
@@ -71,11 +71,11 @@ void RAM::printMatchingLines()
     {   
         std::cout << "#" << counter << ":" << std::endl;
         std::string line;
-        std::string prevLine;
+        std::string prevLine; // Нужная для более корректного вывода
         while (std::getline(file, line)) 
         {
             removeLeadingSpaces(line);
-            bool isIgnored = false;
+            bool isIgnored = false; // Флаг, определяющий попадание строки в один из векторов
             for (const std::string& start : ignoredStarts) 
             {
                 if (line.compare(0, start.length(), start) == 0) {
@@ -83,15 +83,12 @@ void RAM::printMatchingLines()
                     break;
                 }
             }
-            if (isIgnored) 
-            {
-                continue;
-            }
+            if (isIgnored) { continue; } 
             for (const std::string& start : lineStarts) 
             {
                 if (line.compare(0, start.length(), start) == 0) 
                 {
-                    if (GetFirstWord(prevLine) == "Serial")
+                    if (GetFirstWord(prevLine) == "Serial") // Кусок "корректного" вывода
                     {   
                         std::cout << std::endl;
                         counter++;

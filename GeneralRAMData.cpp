@@ -6,6 +6,8 @@
 #include <sstream>
 #include <vector>
 
+int counter = 1;
+
 std::string exec(const char* cmd)
 {
     std::array<char, 128> buffer;
@@ -54,12 +56,25 @@ void removeLeadingSpaces(std::string& str)
     str = str.substr(pos);
 }
 
+std::string GetFirstWord(const std::string& line)
+{   
+    std::string word;
+    for (char ch : line)
+    {
+        if (ch == ' ') { return word; }
+        else { word += ch; }
+    }
+    return word;
+}
+
 void printMatchingLines(const std::vector<std::string>& lineStarts, const std::vector<std::string>& ignoredStarts, const std::string& filename) 
 {
     std::ifstream file(filename);
     if (file.is_open()) 
-    {
+    {   
+        std::cout << "#" << counter << ":" << std::endl;
         std::string line;
+        std::string prevLine;
         while (std::getline(file, line)) 
         {
             removeLeadingSpaces(line);
@@ -79,6 +94,13 @@ void printMatchingLines(const std::vector<std::string>& lineStarts, const std::v
             {
                 if (line.compare(0, start.length(), start) == 0) 
                 {
+                    if (GetFirstWord(prevLine) == "Serial")
+                    {   
+                        std::cout << std::endl;
+                        counter++;
+                        std::cout << "#" << counter << ":" << std::endl;
+                    }
+                    prevLine = line;
                     std::cout << line << std::endl;
                     break;
                 }
@@ -97,9 +119,9 @@ int main()
     {
     "Size: ", 
     "Type: ",
-     "Speed: ",
-      "Manufacturer: ",
-       "Serial Number: ",
+    "Speed: ",
+    "Manufacturer: ",
+    "Serial Number: "
     };
     std::vector<std::string> Exception = 
     {

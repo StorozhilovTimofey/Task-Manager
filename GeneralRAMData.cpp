@@ -11,10 +11,12 @@ std::string exec(const char* cmd)
     std::array<char, 128> buffer;
     std::string result;
     std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
-    if (!pipe) {
+    if (!pipe) 
+    {
         throw std::runtime_error("popen() failed!");
     }
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) 
+    {
         result += buffer.data();
     }
     return result;
@@ -39,8 +41,10 @@ void removeLeadingSpaces(std::string& str)
     size_t pos = 0;
     
     // Находим первый непробельный символ
-    for (size_t i = 0; i < str.length(); i++) {
-        if (!std::isspace(str.at(i))) {
+    for (size_t i = 0; i < str.length(); i++) 
+    {
+        if (!std::isspace(str.at(i))) 
+        {
             pos = i;
             break;
         }
@@ -50,20 +54,25 @@ void removeLeadingSpaces(std::string& str)
     str = str.substr(pos);
 }
 
-void printMatchingLines(const std::vector<std::string>& lineStarts, const std::vector<std::string>& ignoredStarts, const std::string& filename) {
+void printMatchingLines(const std::vector<std::string>& lineStarts, const std::vector<std::string>& ignoredStarts, const std::string& filename) 
+{
     std::ifstream file(filename);
-    if (file.is_open()) {
+    if (file.is_open()) 
+    {
         std::string line;
-        while (std::getline(file, line)) {
+        while (std::getline(file, line)) 
+        {
             removeLeadingSpaces(line);
             bool isIgnored = false;
-            for (const std::string& start : ignoredStarts) {
+            for (const std::string& start : ignoredStarts) 
+            {
                 if (line.compare(0, start.length(), start) == 0) {
                     isIgnored = true;
                     break;
                 }
             }
-            if (isIgnored) {
+            if (isIgnored) 
+            {
                 continue;
             }
             for (const std::string& start : lineStarts) 
@@ -76,9 +85,8 @@ void printMatchingLines(const std::vector<std::string>& lineStarts, const std::v
             }
         }
         file.close();
-    } else {
-        std::cerr << "Unable to open file: " << filename << std::endl;
-    }
+    } 
+    else { std::cerr << "Unable to open file: " << filename << std::endl; }
 }
 
 int main()

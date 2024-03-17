@@ -1,19 +1,7 @@
 #include "CP_lib.h"
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <string>
-#include <vector>
-
-
-
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <csignal>
 #include <thread>
-
-
 
 
 int main()

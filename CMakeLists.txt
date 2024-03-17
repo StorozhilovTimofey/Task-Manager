@@ -8,6 +8,7 @@ set(CXX_STANDARD_REQUIRED True)
 set(SOURCES
     src/main.cpp
     src/RAM.cpp
+    src/GeneralRAM.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

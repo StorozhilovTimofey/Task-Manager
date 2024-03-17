@@ -92,8 +92,8 @@ void GeneralRamParametres(const std::string& path, std::vector<std::string>& Nee
 
 void deleteFile(const std::string& filename)
 {
-    std::string command = "rm -f " + filename; // создаем строку команды для удаления файла
-    int result = std::system(command.c_str()); // вызываем команду через системный вызов
+    std::string command = "rm -f " + filename;
+    int result = std::system(command.c_str());
 }
 
 void printMatchingLines(const std::vector<std::string>& lineStarts, const std::vector<std::string>& ignoredStarts, const std::string& filename) 
@@ -142,7 +142,6 @@ void printMatchingLines(const std::vector<std::string>& lineStarts, const std::v
 
 int main()
 {
-    // Write memory information to a new file and get the file path
     std::string filePath = writeMemoryInfoToFile();
     std::vector<std::string> Allowed = 
     {

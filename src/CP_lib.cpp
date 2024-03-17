@@ -100,3 +100,5 @@ void CPU::ShowCPULoad2(int64_t millisecond, int64_t second_of_show)
         }
     }
 }
+
+

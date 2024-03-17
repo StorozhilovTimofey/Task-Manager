@@ -1,9 +1,45 @@
 #include "CP_lib.h"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
 
-int main() 
-{   
-    CPU test;
-    test.ShowCPULoad2(50, 3);
 
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <csignal>
+#include <thread>
+
+
+
+
+int main()
+{
+    int64_t i = 0;
+    while (i < 50)
+    {
+        // Получаем текущие частоты процессора и выводим их
+        CPU a;
+        if (a.getCurrentCpuFrequency() != "Error" && a.getCurrentCpuFrequency() != "Unknown")
+        {
+            std::cout << "Current CPU frequency: " << a.getCurrentCpuFrequency() << " MHz" << std::endl;
+        } else
+        {
+            std::cerr << "Failed to get current CPU frequency" << std::endl;
+        }
+
+
+        // Получаем температуру процессора и выводим её
+        if (a.getCpuTemperature() >= 0.0)
+        {
+            std::cout << "CPU temperature: " << a.getCpuTemperature() << " C" << std::endl;
+        }
+        std::cout << std::endl;
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        ++i;
+    }
     return 0;
 }

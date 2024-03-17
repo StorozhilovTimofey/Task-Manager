@@ -102,4 +102,85 @@ void CPU::ShowCPULoad2(int64_t millisecond, int64_t second_of_show)
 }
 
 
-//mm
+void CPU::ShowCPUOperation(int64_t millisecond_of_show)
+{
+    auto start = CPUdata_info();
+    std::this_thread::sleep_for(std::chrono::milliseconds (millisecond_of_show));
+    auto end = CPUdata_info();
+
+    for (size_t i = 0; i < start.size() ; ++i)
+    {
+        size_t total_start = start[i].user + start[i].nice + start[i].system + start[i].irq
+                             + start[i].softirq + start[i].guest_nice + start[i].steal + start[i].guest;
+        size_t total_end = end[i].user + end[i].nice + end[i].system + end[i].irq
+                           + end[i].softirq + end[i].guest_nice + end[i].steal + end[i].guest;
+        std::cout << (start[i]).cpu << ": " << total_end - total_start << "    ";
+    }
+    std::cout << std::endl;
+}
+
+// Функция для чтения значения из файла и возврата его в виде строки
+std::string readFromFile(const std::string &filePath)
+{
+    std::ifstream file(filePath);
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open file: " << filePath << std::endl;
+        return "";
+    }
+
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
+}
+
+
+// Функция для чтения текущей частоты процессора из файла /proc/cpuinfo
+std::string CPU::getCurrentCpuFrequency()
+{
+    std::ifstream cpuinfoFile("/proc/cpuinfo");
+    if (!cpuinfoFile.is_open())
+    {
+        std::cerr << "Failed to open /proc/cpuinfo" << std::endl;
+        return "Error";
+    }
+
+    std::string line;
+    while (std::getline(cpuinfoFile, line))
+    {
+        if (line.find("cpu MHz") != std::string::npos)
+        {
+            // Найдена строка с текущей частотой процессора
+            size_t colonPos = line.find(":");
+            if (colonPos != std::string::npos)
+            {
+                std::string frequencyStr = line.substr(colonPos + 1);
+                // Удаляем лишние пробелы в начале строки
+                size_t firstDigitPos = frequencyStr.find_first_of("0123456789");
+                if (firstDigitPos != std::string::npos)
+                {
+                    return frequencyStr.substr(firstDigitPos);
+                }
+            }
+        }
+    }
+
+    return "Unknown";
+}
+
+
+double CPU::getCpuTemperature()
+{
+    std::string tempStr = readFromFile("/sys/class/thermal/thermal_zone0/temp");
+    if (tempStr.empty())
+    {
+        std::cerr << "Failed to read CPU temperature" << std::endl;
+        return -1.0;
+    }
+
+    // Преобразуем строку в число (температуру) и переводим её в градусы Цельсия
+    double temp;
+    std::stringstream(tempStr) >> temp;
+    return temp / 1000.0;
+}
+

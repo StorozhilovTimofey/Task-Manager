@@ -25,11 +25,22 @@ class CPU
 public:
     //Позволяет оценить загруженность процессора и его ядер с интервалом в millisecond в течение second_of_show секунд
     void ShowCPULoad2(int64_t millisecond, int64_t second_of_show);
+
+    //Позволяет оценить загруженность процессора и его ядер с интервалом в millisecond в течение second_of_show секунд
+    void ShowCPUOperation(int64_t millisecond_of_show);
+
+    // Функция для получения температуры процессора
+    double getCpuTemperature();
+
+    // Функция для чтения текущей частоты процессора из файла /proc/cpuinfo
+    std::string getCurrentCpuFrequency();
 private:
     // Считывает файл "/proc/stat", и берет нужную информацию о процессоре и ядрах
     std::vector<CPUData> CPUdata_info();
+
     // //Основываясь на информации о состоянии ядра процессора рассчитает его загруженность
     long double CPUload(CPUData& start, CPUData& end);
+
     // Позволяет оценить загруженность процессора и его ядер с промежутком в millisecond милисекунд
     void ShowCPULoad1(int64_t millisecond);
 };

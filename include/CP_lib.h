@@ -30,9 +30,13 @@ public:
     void ShowCPUOperation(int64_t millisecond_of_show);
 
     // Функция для получения температуры процессора
+    // Возращает текущую температуру в градусах цельсия
     double getCpuTemperature();
 
     // Функция для чтения текущей частоты процессора из файла /proc/cpuinfo
+    // Возвращает число в виде строки
+    // Если произошла ошибка при чтении файла "/proc/cpuinfo" то вернет "Error"
+    // Если файл "/proc/cpuinfo" прочитан но не была найдена нужная информация то вернет "Unknown"
     std::string getCurrentCpuFrequency();
 private:
     // Считывает файл "/proc/stat", и берет нужную информацию о процессоре и ядрах

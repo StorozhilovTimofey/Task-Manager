@@ -1,8 +1,10 @@
-#include "CP_lib.h"
 #include <iostream>
 #include <string>
 #include <thread>
 
+#include "RAM.h"
+#include "GeneralRAM.h"
+#include "CP_lib.h"
 
 int main()
 {
@@ -29,5 +31,15 @@ int main()
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         ++i;
     }
+
+    RAM example;
+    example.createFile();
+    example.printMatchingLines();
+    example.deleteFile();
+
+    GeneralRAM sameexample;
+    sameexample.PrettyOutput();
+    sameexample.GeneralRamParametres();
+
     return 0;
 }

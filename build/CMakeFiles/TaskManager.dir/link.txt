@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/TaskManager.dir/src/main.cpp.o CMakeFiles/TaskManager.dir/src/CP_lib.cpp.o -o TaskManager 

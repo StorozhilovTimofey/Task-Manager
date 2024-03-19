@@ -1,3 +1,0 @@
-/home/timofey/project/Task-Manager/build/CMakeFiles/TaskManager.dir
-/home/timofey/project/Task-Manager/build/CMakeFiles/edit_cache.dir
-/home/timofey/project/Task-Manager/build/CMakeFiles/rebuild_cache.dir

@@ -10,12 +10,12 @@
 class ControllerGeneralRAM : public IControllerGeneralRAM
 {
 public:
-    ControllerGeneralRAM(IModelGeneralRAM* model, IViewGeneralRAM* view) : model(model), view(view) {}
+    ControllerGeneralRAM(IModelGeneralRAM::Ptr model, IViewGeneralRAM* view);
     void Launch() override;
 private:
-    IModelGeneralRAM* model;
+    IModelGeneralRAM::Ptr model;
     IViewGeneralRAM* view;
-    const std::string path = "/proc/meminfo";
+    //const std::string path = "/proc/meminfo";
     const std::vector<std::string> needs = 
     {
         "MemTotal:",

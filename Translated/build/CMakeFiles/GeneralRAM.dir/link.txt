@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/GeneralRAM.dir/src/main.cpp.o CMakeFiles/GeneralRAM.dir/src/ModelGeneralRAM.cpp.o CMakeFiles/GeneralRAM.dir/src/ViewGeneralRAM.cpp.o CMakeFiles/GeneralRAM.dir/src/Controller.cpp.o -o GeneralRAM 

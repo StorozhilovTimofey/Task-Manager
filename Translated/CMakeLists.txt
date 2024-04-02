@@ -4,9 +4,9 @@ project(GeneralRAM)
 
 set(SOURCES
     src/main.cpp
-    src/ControllerGeneralRAM.cpp
     src/ModelGeneralRAM.cpp
     src/ViewGeneralRAM.cpp
+    src/Controller.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SOURCES})

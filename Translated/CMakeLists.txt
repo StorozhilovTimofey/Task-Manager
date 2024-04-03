@@ -6,6 +6,7 @@ set(SOURCES
     src/main.cpp
     src/ModelGeneralRAM.cpp
     src/ViewGeneralRAM.cpp
+    src/ControllerGeneralRAM.cpp
     src/Controller.cpp
 )
 

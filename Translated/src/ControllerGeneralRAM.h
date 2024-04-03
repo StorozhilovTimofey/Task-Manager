@@ -15,7 +15,7 @@ public:
 private:
     IModelGeneralRAM::Ptr model;
     IViewGeneralRAM* view;
-    //const std::string path = "/proc/meminfo";
+    const std::string path = "/proc/meminfo";
     const std::vector<std::string> needs = 
     {
         "MemTotal:",

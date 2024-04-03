@@ -1,3 +1,5 @@
+#pragma once
+
 #include "IControllerGeneralRAM.h"
 #include "IModelGeneralRAM.h"
 #include "IViewGeneralRAM.h"

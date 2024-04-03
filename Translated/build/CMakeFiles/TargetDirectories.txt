@@ -1,3 +1,0 @@
-/home/timofey/projects/Task-Manager/Translated/build/CMakeFiles/GeneralRAM.dir
-/home/timofey/projects/Task-Manager/Translated/build/CMakeFiles/edit_cache.dir
-/home/timofey/projects/Task-Manager/Translated/build/CMakeFiles/rebuild_cache.dir

@@ -1,19 +1,17 @@
-#include "IControllerGeneralRAM.h"
-#include "IModelGeneralRAM.h"
-#include "IViewGeneralRAM.h"
-#include "ModelGeneralRAM.h"
-#include "ViewGeneralRAM.h"
+#include "IControllerGRAM.h"
+#include "IModelGRAM.h"
+#include "IViewGRAM.h"
+#include "ModelGRAM.h"
+#include "ViewGRAM.h"
 #include "Controller.h"
 
 int main(void)
 {
-    auto model = std::make_shared<ModelGeneralRAM>();
-    IViewGeneralRAM* view = new ViewGeneralRAM();
-    auto controller = create(model, view);
+    auto model = std::make_shared<ModelGRAM>();
+    auto view = std::make_shared<ViewGRAM>();
+    auto controller = create(view, model);
 
     controller->Launch();
-
-    delete view;
 
     return 0;
 }

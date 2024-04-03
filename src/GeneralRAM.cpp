@@ -22,7 +22,7 @@ void GeneralRAM::GeneralRamParametres()
 {
     std::cout << "General Parametres: " << std::endl;
     std::ifstream file(path);
-    std::string line;
+    std::string line;   
     while (std::getline(file, line)) // Чтение файла
     {   
         for (const std::string& start : Needs) // Цикл в котором сравниваются слова в строки с элементами вектора

@@ -1,7 +1,7 @@
 #include "Controller.h"
-#include "ControllerGeneralRAM.h"
+#include "ControllerGRAM.h"
 
-IControllerGeneralRAM::Ptr create(IModelGeneralRAM::Ptr model, IViewGeneralRAM* view)
+IControllerGRAM::ICptr create(IViewGRAM::IVptr view, IModelGRAM::IMptr model)
 {
-    return std::make_shared<ControllerGeneralRAM>(std::move(model), view);
+    return std::make_shared<ControllerGRAM>(std::move(view), std::move(model));
 }

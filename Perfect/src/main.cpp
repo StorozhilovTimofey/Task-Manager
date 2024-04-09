@@ -4,11 +4,11 @@
 
 int main(void)
 {
-    auto model = std::make_shared<ModelGRAM>();
-    auto view = std::make_shared<ViewGRAM>();
-    auto controller = create(view, model);
+    auto model = std::make_shared<ModelGRAM>(); // Указатель на модель
+    auto view = std::make_shared<ViewGRAM>(); // Указатель на вид
+    auto controller = create(view, model); // Указатель на контроллер, с принятием других указателей
 
-    controller->Launch();
+    controller->Launch(); // Запуск проекта
 
     return 0;
 }

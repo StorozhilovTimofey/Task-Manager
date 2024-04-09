@@ -5,6 +5,7 @@ set(CXX_STANDARD 17)
 set(CXX_STANDARD_REQUIRED True)
 
 set(SOURCES
+    src/ParticularRAMParams.cpp
     src/ControllerRAM.cpp
     src/GeneralRAMParams.cpp
     src/main.cpp

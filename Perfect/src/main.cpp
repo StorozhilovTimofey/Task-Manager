@@ -1,14 +1,22 @@
 #include "ControllerRAM.h"
 #include "GeneralRAMParams.h"
 #include "IGeneralRAMParams.h"
+#include "ParticularRAMParams.h"
+#include "IParticularRAMParams.h"
 
 int main(void)
 {
-    auto model = std::make_shared<ModelGRAM>(); // Указатель на модель
-    auto view = std::make_shared<ViewGRAM>(); // Указатель на вид
-    auto controller = create(view, model); // Указатель на контроллер, с принятием других указателей
+    auto modelGeneralRAM = std::make_shared<ModelGRAM>(); // Указатель на модель
+    auto viewGeneralRAM = std::make_shared<ViewGRAM>(); // Указатель на вид
+    auto controllerGeneralRAM = create(viewGeneralRAM, modelGeneralRAM); // Указатель на контроллер, с принятием других указателей
 
-    controller->Launch(); // Запуск проекта
+    controllerGeneralRAM->Launch(); // Запуск общих параметров оперативной памяти
+
+    auto modelParticularRAM = std::make_shared<ModelPRAM>();
+    auto viewParticularRAM = std::make_shared<ViewPRAM>();
+    auto controllerParticularRAM = create(viewParticularRAM, modelParticularRAM);
+
+    controllerParticularRAM->Launch();
 
     return 0;
 }

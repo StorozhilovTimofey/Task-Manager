@@ -50,30 +50,31 @@ std::string ModelPRAM::GetFirstWord(const std::string& line)
 void ModelPRAM::CreateFile()
 {
     std::string memoryInfo = exec("sudo dmidecode --type memory"); // Запуск процесса
-    std::ofstream file(filePath);
-    file << "Memory Information:\n" << memoryInfo << std::endl;
-    file.close();
+    std::ofstream file(filePath); // Файл, куда записывается результат процесса
+    file << "Memory Information:\n" << memoryInfo << std::endl; // Запись
+    file.close(); // Освобождение памяти
 }
 
 void ModelPRAM::DeleteFile()
 {
-    std::string command = "rm -f " + filePath;
-    int result = std::system(command.c_str());
+    std::string command = "rm -f " + filePath; // Команда удаления созданного файла
+    int result = std::system(command.c_str()); // Ввод команды
 }
 
 std::vector<std::string> ModelPRAM::AllData()
 {
-    std::vector<std::string> result;
-    std::ifstream file(filePath);
-    if (file.is_open())
+    std::vector<std::string> result; // Результат
+    result.push_back("\n#" + std::to_string(counter) + ":"); // Обозначение первой плашки оперативы
+    std::ifstream file(filePath); // Файл, откуда считываются данные, созданный нами
+    if (file.is_open()) // Если файл открылся
     {
-        std::string line;
-        std::string prevLine;
-        while (std::getline(file, line))
+        std::string line; // Текущая, рассматриваемая строка
+        std::string prevLine; // Предыдущая строка; нужна, чтобы отслеживать изменение счетчика плашек
+        while (std::getline(file, line)) // Считываение файла
         {
-            RemoveLeadingSpaces(line);
-            bool isIgnored = false;
-            for (const std::string& elem : ignoredStarts)
+            RemoveLeadingSpaces(line); // Удаление первых пробелов в строке 
+            bool isIgnored = false; // Создание флага, который отслеживает не попался ли пустой слот для оперативы
+            for (const std::string& elem : ignoredStarts) // Проверка на пустоту
             {        
                 if(line.compare(0, elem.length(), elem) == 0)
                 {
@@ -81,15 +82,15 @@ std::vector<std::string> ModelPRAM::AllData()
                     break;
                 }
             }
-            if (isIgnored) { continue; }
-            for (const std::string& elem : lineStarts)
+            if (isIgnored) { continue; } // Пропуск куска информации, если слот пустой
+            for (const std::string& elem : lineStarts) // Заполнение вектора нужными данными
             {
                 if (line.compare(0, elem.length(), elem) == 0)
                 {
-                    if (GetFirstWord(prevLine) == "Serial")
+                    if (GetFirstWord(prevLine) == "Serial") // Смена счетчика
                     {
                         counter++;
-                        result.push_back("\n#" + std::to_string(counter) + ":\n");
+                        result.push_back("\n#" + std::to_string(counter) + ":");
                     }
                     prevLine = line;
                     result.push_back(line);
@@ -99,14 +100,13 @@ std::vector<std::string> ModelPRAM::AllData()
         }
         file.close();
     }
-    else { std::cerr << "Unable to open file: " << filePath << std::endl; }
+    else { std::cerr << "Unable to open file: " << filePath << std::endl; } // Если файл не создался
     
     return result;
 }
 
 void ViewPRAM::ShowRAMParams(const std::vector<std::string>& RAMParams)
 {   
-    std::cout << std::endl;
     for (const std::string& elem : RAMParams)
     {
         std::cout << elem << std::endl;
@@ -120,8 +120,8 @@ ControllerPRAM::ControllerPRAM(IViewPRAM::IVptr view, IModelPRAM::IMptr model) :
 
 void ControllerPRAM::Launch()
 {
-    model->CreateFile();
-    std::vector<std::string> result = model->AllData();
-    view->ShowRAMParams(result);
-    model->DeleteFile();
+    model->CreateFile(); // Создание файла
+    std::vector<std::string> result = model->AllData(); // Запсь данных из модели в вектор
+    view->ShowRAMParams(result); // Вывод вектора
+    model->DeleteFile(); // Удаление файла
 }

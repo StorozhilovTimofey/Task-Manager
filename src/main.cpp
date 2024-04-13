@@ -32,14 +32,5 @@ int main()
         ++i;
     }
 
-    RAM example;
-    example.createFile();
-    example.printMatchingLines();
-    example.deleteFile();
-
-    GeneralRAM sameexample;
-    sameexample.PrettyOutput();
-    sameexample.GeneralRamParametres();
-
     return 0;
 }

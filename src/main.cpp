@@ -2,8 +2,6 @@
 #include <string>
 #include <thread>
 
-#include "RAM.h"
-#include "GeneralRAM.h"
 #include "CP_lib.h"
 
 int main()

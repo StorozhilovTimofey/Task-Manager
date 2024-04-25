@@ -31,6 +31,16 @@ set(PROJECT_SOURCES
 	Controller/Cram.cpp
 	Controller/Controller.h
 	Controller/Controller.cpp
+
+	Controller/ICPUController.h
+	Controller/CPUController.h
+	Controller/CPUController.cpp
+	Model/ICPUModel.h
+	Model/CPUModel.h
+	Model/CPUModel.cpp
+	View/ICPUView.h
+	View/CPUView.h
+	View/CPUView.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

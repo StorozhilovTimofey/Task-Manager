@@ -2,4 +2,10 @@
 #include "View/IVram.h"
 #include "Model/IMram.h"
 
-IControllerRAM::ICptr createController(IViewRAM::IVptr view, IModelRAM::IMptr model);
+#include "ICPUController.h"
+#include "View/ICPUView.h"
+#include "Model/ICPUModel.h"
+
+IControllerRAM::ICptr createControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model);
+
+IControllerCPU::ICptr createControllerCPU(IViewCPU::IVptr view, IModelCPU::IMptr model);

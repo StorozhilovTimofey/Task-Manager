@@ -1,18 +1,15 @@
-#pragma once
+#include "ICram.h"
+#include "Model/IMram.h"
+#include "View/IVram.h"
 
-#include "ICGeneralRAM.h"
-#include "Model/IMGeneralRAM.h"
-#include "View/IVGeneralRAM.h"
-
-// Контроллер общих параметров оперативной памяти
-class ControllerGRAM : public IControllerGRAM
+class ControllerRAM : public IControllerRAM
 {
 public:
-    ControllerGRAM(IViewGRAM::IGRAMVptr view, IModelGRAM::IGRAMMptr model); // Конструктор с указателями на интерфейсы model и view
+    ControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model); // Конструктор с указателями на интерфейсы model и view
     void Launch() override; // Функция, которая запускает реализацию проекта, осуществляя связь между всеми компонентами
 private:
-    IViewGRAM::IGRAMVptr view;
-    IModelGRAM::IGRAMMptr model;
+    IViewRAM::IVptr view;
+    IModelRAM::IMptr model;
     const std::string path = "/proc/meminfo"; // Путь до файла с информацией об оперативной памяти
     const std::vector<std::string> needs =
     {

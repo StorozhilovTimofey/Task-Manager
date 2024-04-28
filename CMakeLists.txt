@@ -41,6 +41,9 @@ set(PROJECT_SOURCES
 	View/ICPUView.h
 	View/CPUView.h
 	View/CPUView.cpp
+
+	View/mainwindow.h
+	View/mainwindow.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

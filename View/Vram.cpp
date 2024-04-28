@@ -9,37 +9,31 @@
 
 #include "Vram.h"
 
-ViewRAM::ViewRAM()
+ViewRAM::ViewRAM(QWidget *parent) : QWidget(parent)
 {
-    ramWindow = new QWidget;
-    ramWindow->setWindowTitle("Random Access Memory");
-    ramWindow->show();
+    label = new QLabel("RAM Params: ", this);
+
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget(label);
+
+    setLayout(layout);
 }
 
 void ViewRAM::ShowRAMParams(const std::vector<std::string> &RAMParams,
                             const std::vector<std::string>& params)
 {
-    QVBoxLayout* layout = new QVBoxLayout();
-    QString vector_1, vector_2;
-
-    for (const std::string& elem : RAMParams)
+    QString text;
+    for (const auto &param : RAMParams)
     {
-        vector_1 += QString::fromStdString(elem) + '\n';
+        text.append(QString::fromStdString(param) + "\n");
     }
-    QLabel* label_1 = new QLabel(vector_1);
-    layout->addWidget(label_1);
-
-    for (const std::string& elem : params)
+    for (const auto &param : params)
     {
-        vector_2 += QString::fromStdString(elem) + '\n';
+        text.append(QString::fromStdString(param) + "\n");
     }
-    QLabel* label_2 = new QLabel(vector_2);
-    layout->addWidget(label_2);
-
-    ramWindow->setLayout(layout);
+    label->setText(text);
 }
 
 ViewRAM::~ViewRAM()
 {
-    delete ramWindow;
 }

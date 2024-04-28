@@ -3,10 +3,14 @@
 #include "Controller/Controller.h"
 #include "Model/Model.h"
 #include "View/View.h"
+#include "View/mainwindow.h"
 
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
+    MainWindow window;
+    window.show();
+
     auto modelRAM = createModelRAM(); // Указатель на модель
     auto viewRAM = createViewRAM(); // Указатель на вид
     auto controllerRAM = createControllerRAM(viewRAM, modelRAM); // Указатель на контроллер, с принятием других указателей

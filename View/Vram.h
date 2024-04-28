@@ -1,18 +1,18 @@
 #pragma once
 
 #include <QString>
-#include <QWidget>
+#include <QtWidgets>
 
 #include "IVram.h"
 
-class ViewRAM : public IViewRAM
+class ViewRAM : public IViewRAM, public QWidget
 {
 public:
-    ViewRAM();
+    ViewRAM(QWidget *parent = 0);
+public slots:
     void ShowRAMParams(const std::vector<std::string>& RAMParams,
                        const std::vector<std::string>& params) override;
     ~ViewRAM();
 private:
-    QString VectorToQString(const std::vector<std::string> vector);
-    QWidget *ramWindow;
+    QLabel *label;
 };

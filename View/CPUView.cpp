@@ -5,10 +5,21 @@
 
 #include "CPUView.h"
 
+ViewCPU::ViewCPU(QWidget *parent) : QWidget(parent)
+{
+    label = new QLabel("CPU Params:", this);
+
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget(label);
+    setLayout(layout);
+}
 
 void ViewCPU::ShowCpuParametres(std::vector<double> input)
 {
-    std::cout << "Current CPU frequency: " << input[0] << " MHz" << std::endl;
-
-    std::cout << "Current CPU temperature: "  << input[1] << " °C" << std::endl;
+    QString text;
+    for (const auto &param : input)
+    {
+        text.append(QString::number(param) + "\n");
+    }
+    label->setText(text);
 }

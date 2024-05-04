@@ -1,6 +1,3 @@
-#include "CPUView.h"
-
-#include <iostream>
 #include <vector>
 
 #include "CPUView.h"

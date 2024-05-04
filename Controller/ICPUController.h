@@ -2,8 +2,8 @@
 
 #include <memory>
 
-#include "Model/ICPUModel.h"
-#include "View/ICPUView.h"
+#include "ICPUModel.h"
+#include "ICPUView.h"
 
 
 class IControllerCPU

@@ -15,36 +15,20 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(PROJECT_SOURCES
-        main.cpp
-	Model/IMram.h
-	Model/Mram.h
-	Model/Mram.cpp
-	Model/Model.h
-	Model/Model.cpp
-	View/IVram.h
-	View/Vram.h
-	View/Vram.cpp
-	View/View.h
-	View/View.cpp
-	Controller/ICram.h
-	Controller/Cram.h
-	Controller/Cram.cpp
-	Controller/Controller.h
-	Controller/Controller.cpp
-
-	Controller/ICPUController.h
-	Controller/CPUController.h
-	Controller/CPUController.cpp
-	Model/ICPUModel.h
-	Model/CPUModel.h
-	Model/CPUModel.cpp
-	View/ICPUView.h
-	View/CPUView.h
-	View/CPUView.cpp
-
-	View/mainwindow.h
-	View/mainwindow.cpp
+		main.cpp
+		Model/Mram.cpp
+		Model/Model.cpp
+		Model/CPUModel.cpp
+		View/Vram.cpp
+		View/View.cpp
+		View/CPUView.cpp
+		View/mainwindow.cpp
+		Controller/Cram.cpp
+		Controller/Controller.cpp
+		Controller/CPUController.cpp
 )
+
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Tasks-Manager
@@ -68,6 +52,14 @@ else()
         )
     endif()
 endif()
+
+
+target_include_directories(Tasks-Manager PRIVATE
+		${PROJECT_SOURCE_DIR}/Controller
+		${PROJECT_SOURCE_DIR}/Model
+		${PROJECT_SOURCE_DIR}/View
+)
+
 
 target_link_libraries(Tasks-Manager PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 

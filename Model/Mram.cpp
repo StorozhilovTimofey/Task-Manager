@@ -1,8 +1,9 @@
-    #include "Mram.h"
-
 #include <fstream>
 #include <sstream>
 #include <iostream>
+
+#include "Mram.h"
+
 
 std::string ModelRAM::FirstWord(const std::string& line)
 {

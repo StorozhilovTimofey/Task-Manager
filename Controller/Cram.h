@@ -1,6 +1,6 @@
 #include "ICram.h"
-#include "Model/IMram.h"
-#include "View/IVram.h"
+#include "IMram.h"
+#include "IVram.h"
 
 class ControllerRAM : public IControllerRAM
 {

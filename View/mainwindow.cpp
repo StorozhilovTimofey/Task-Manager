@@ -23,8 +23,15 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 
     setLayout(mainLayout);
 
+    resize(700, 400);
+
+    // Убедитесь, что координаты находятся в пределах виджета MainWindow
+    ramButton->move(550, 50); // Переместить кнопку RAM в позицию (550, 50)
+    cpuButton->move(250, 150); // Переместить кнопку CPU в позицию (250, 150)
+
     connect(ramButton, &QPushButton::clicked, this, &MainWindow::SwitchToRAMPage);
     connect(cpuButton, &QPushButton::clicked, this, &MainWindow::SwitchToCPUPage);
+
 }
 
 void MainWindow::SwitchToRAMPage()

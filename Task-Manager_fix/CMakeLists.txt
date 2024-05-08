@@ -26,6 +26,7 @@ set(PROJECT_SOURCES
 		Controller/Cram.cpp
 		Controller/Controller.cpp
 		Controller/CPUController.cpp
+		View/ViewAll.cpp
 )
 
 

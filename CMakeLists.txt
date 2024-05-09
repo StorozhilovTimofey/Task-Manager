@@ -22,7 +22,6 @@ set(PROJECT_SOURCES
 		View/Vram.cpp
 		View/View.cpp
 		View/CPUView.cpp
-		View/mainwindow.cpp
 		Controller/Cram.cpp
 		Controller/Controller.cpp
 		Controller/CPUController.cpp

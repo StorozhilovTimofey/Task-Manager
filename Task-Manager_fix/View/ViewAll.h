@@ -1,12 +1,9 @@
 #pragma once
 
-#include <memory>
-#include <vector>
-
-#include "View.h"
-#include "Vram.h"
 #include "CPUView.h"
 #include "IViewAll.h"
+#include "View.h"
+#include "Vram.h"
 
 
 class ViewAll : public IViewAll
@@ -17,14 +14,3 @@ public:
 
     ~ViewAll() = default;
 };
-
-
-
-
-
-
-
-
-
-
-

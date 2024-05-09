@@ -1,6 +1,5 @@
 #include "mainwindow.h"
-#include <vector>
-#include <iostream>
+
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {

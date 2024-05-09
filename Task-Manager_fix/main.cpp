@@ -1,9 +1,4 @@
-#include <QApplication>
-
 #include "mainwindow.h"
-#include "IViewAll.h"
-#include "IModelAll.h"
-#include "IControllerAll.h"
 
 int main(int argc, char** argv)
 {
@@ -24,6 +19,7 @@ int main(int argc, char** argv)
 
     MainWindow window;
     window.show();
+    
 
     return app.exec();
 }

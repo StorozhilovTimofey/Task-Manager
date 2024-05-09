@@ -1,7 +1,5 @@
-#include <vector>
-#include <iostream>
-
 #include "CPUView.h"
+
 
 ViewCPU::ViewCPU(QWidget *parent) : QWidget(parent)
 {
@@ -11,6 +9,7 @@ ViewCPU::ViewCPU(QWidget *parent) : QWidget(parent)
     layout->addWidget(label);
     setLayout(layout);
 }
+
 
 void ViewCPU::ShowCpuParametres(std::vector<double> input)
 {

@@ -2,17 +2,18 @@
 
 #include <QtWidgets>
 
-#include "Vram.h"
-#include "CPUView.h"
 #include "ControllerAll.h"
+
 
 class MainWindow : public QWidget
 {
 public:
     explicit MainWindow(QWidget *parent = 0);
+
 public slots:
     void SwitchToRAMPage();
     void SwitchToCPUPage();
+
 private:
     QStackedWidget *stackedWidget;
     QPushButton *ramButton;

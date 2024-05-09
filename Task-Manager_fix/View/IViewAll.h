@@ -1,8 +1,10 @@
 #pragma once
 
 #include <memory>
-#include "IVram.h"
+
 #include "ICPUView.h"
+#include "IVram.h"
+
 
 class IViewAll
 {

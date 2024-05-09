@@ -29,10 +29,6 @@ int main(int argc, char** argv)
 
     ViewAll viewAll;
     ModelAll modelAll;
-    ControllerAll controllerAll(viewAll, modelAll);
 
-    MainWindow window(controllerAll);
-    window.show();
-
-    return app.exec();
+    return 0;
 }

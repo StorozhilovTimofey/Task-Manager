@@ -2,10 +2,8 @@
 #include <vector>
 #include <iostream>
 
-MainWindow::MainWindow(ControllerAll controllerAll, QWidget *parent) : QWidget(parent)
+MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 {
-    controllerAll = controllerAll;
-
     stackedWidget = new QStackedWidget(this);
 
     ramPage = new ViewRAM(this);

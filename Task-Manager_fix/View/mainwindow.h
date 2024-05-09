@@ -9,7 +9,7 @@
 class MainWindow : public QWidget
 {
 public:
-    explicit MainWindow(ControllerAll controllerAll, QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = 0);
 public slots:
     void SwitchToRAMPage();
     void SwitchToCPUPage();
@@ -19,5 +19,4 @@ private:
     QPushButton *cpuButton;
     ViewRAM *ramPage;
     ViewCPU *cpuPage;
-    ControllerAll *controllerAll;
 };

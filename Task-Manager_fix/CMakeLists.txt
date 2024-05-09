@@ -16,19 +16,22 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(PROJECT_SOURCES
 		main.cpp
-		Model/Mram.cpp
-		Model/Model.cpp
+
+		Controller/Controller.cpp
+		Controller/ControllerAll.cpp
+		Controller/CPUController.cpp
+		Controller/Cram.cpp
+
 		Model/CPUModel.cpp
-		View/Vram.cpp
-		View/View.cpp
+		Model/Model.cpp
+		Model/ModelAll.cpp
+		Model/Mram.cpp
+
 		View/CPUView.cpp
 		View/mainwindow.cpp
-		Controller/Cram.cpp
-		Controller/Controller.cpp
-		Controller/CPUController.cpp
+		View/View.cpp
 		View/ViewAll.cpp
-		Model/ModelAll.cpp
-		Controller/ControllerAll.cpp
+		View/Vram.cpp
 )
 
 

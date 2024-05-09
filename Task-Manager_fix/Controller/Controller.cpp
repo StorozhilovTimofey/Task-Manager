@@ -16,6 +16,6 @@ IControllerCPU::ICptr createControllerCPU(IViewCPU::IVptr view, IModelCPU::IMptr
 
 IControllerAll::ICptr createCAll()
 {
-    return std::make_shared<ControllerAll1>();
+    return std::make_shared<ControllerAll>();
 }
 

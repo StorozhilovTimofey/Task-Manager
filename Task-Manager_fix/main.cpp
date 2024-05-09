@@ -23,6 +23,9 @@ int main(int argc, char** argv)
     std::shared_ptr<IModelCPU> e = d->getCpu();
     auto f = d->getRam();
 
+    std::shared_ptr<IControllerAll> g = createCAll();
+    std::shared_ptr<IControllerCPU> h = g->getCpu(a, d);
+    auto l = g->getRam(a, d);
 
     ViewAll viewAll;
     ModelAll modelAll;

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ICram.h"
 #include "IMram.h"
 #include "IVram.h"

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "ControllerAll.h"
 #include "IViewAll.h"
 #include "IModelAll.h"

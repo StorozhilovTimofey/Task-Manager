@@ -1,16 +1,10 @@
 #pragma once
 
-#include <memory>
-#include <vector>
-
 #include "Controller.h"
-#include "Cram.h"
 #include "CPUController.h"
+#include "Cram.h"
 #include "ModelAll.h"
 #include "ViewAll.h"
-#include "IControllerAll.h"
-#include "IModelAll.h"
-#include "IViewAll.h"
 
 
 class ControllerAll : public IControllerAll

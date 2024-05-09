@@ -1,9 +1,11 @@
 #include "Cram.h"
 
+
 ControllerRAM::ControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model) :
     view(view), model(model)
 {
 }
+
 
 void ControllerRAM::Launch()
 {

@@ -1,11 +1,10 @@
 #pragma once
 
-#include <memory>
-
 #include "ICram.h"
 #include "ICPUController.h"
 #include "IViewAll.h"
 #include "IModelAll.h"
+
 
 class IControllerAll
 {

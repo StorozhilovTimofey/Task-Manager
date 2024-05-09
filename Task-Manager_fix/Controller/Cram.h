@@ -4,6 +4,7 @@
 #include "IMram.h"
 #include "IVram.h"
 
+
 class ControllerRAM : public IControllerRAM
 {
 public:

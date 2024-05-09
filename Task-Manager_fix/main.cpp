@@ -7,15 +7,22 @@
 #include "ModelAll.h"
 #include "ViewAll.h"
 #include "IViewAll.h"
+#include "IModelAll.h"
+#include "IControllerAll.h"
 
 int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
 
 
-    auto a = createVAll();
-    auto b = a->getCpu();
+    std::shared_ptr<IViewAll> a = createVAll();
+    std::shared_ptr<IViewCPU> b = a->getCpu();
     auto c = a->getRam();
+
+    std::shared_ptr<IModelAll> d = createMAll();
+    std::shared_ptr<IModelCPU> e = d->getCpu();
+    auto f = d->getRam();
+
 
     ViewAll viewAll;
     ModelAll modelAll;

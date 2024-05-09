@@ -27,6 +27,8 @@ set(PROJECT_SOURCES
 		Controller/Controller.cpp
 		Controller/CPUController.cpp
 		View/ViewAll.cpp
+		Model/ModelAll.cpp
+		Controller/ControllerAll.cpp
 )
 
 

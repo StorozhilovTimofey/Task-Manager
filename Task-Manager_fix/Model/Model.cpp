@@ -1,4 +1,5 @@
 #include "Model.h"
+#include "ModelAll.h"
 
 IModelRAM::IMptr createModelRAM()
 {
@@ -8,4 +9,9 @@ IModelRAM::IMptr createModelRAM()
 IModelCPU::IMptr createModelCPU()
 {
     return std::make_shared<ModelCPU>();
+}
+
+IModelAll::IMptr createMAll()
+{
+    return std::make_shared<ModelAll1>();
 }

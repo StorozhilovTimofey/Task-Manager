@@ -13,5 +13,5 @@ IModelCPU::IMptr createModelCPU()
 
 IModelAll::IMptr createMAll()
 {
-    return std::make_shared<ModelAll1>();
+    return std::make_shared<ModelAll>();
 }

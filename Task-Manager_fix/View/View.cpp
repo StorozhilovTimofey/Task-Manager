@@ -16,5 +16,5 @@ IViewCPU::IVptr createViewCPU()
 
 IViewAll::IVptr createVAll()
 {
-    return std::make_shared<ViewAll1>();
+    return std::make_shared<ViewAll>();
 }

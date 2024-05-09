@@ -8,25 +8,13 @@
 #include "Mram.h"
 #include "IModelAll.h"
 
-class ModelAll
-{
-public:
-    std::shared_ptr<IModelCPU> Ptr_cpu;
-    std::shared_ptr<IModelRAM> Ptr_ram;
 
-    ModelAll()
-    {
-        Ptr_cpu = createModelCPU();
-        Ptr_ram = createModelRAM();
-    }
-};
-
-class ModelAll1 : public IModelAll
+class ModelAll : public IModelAll
 {
 public:
     std::shared_ptr<IModelCPU> getCpu() override;
     std::shared_ptr<IModelRAM> getRam() override;
 
-    ~ModelAll1() = default;
+    ~ModelAll() = default;
 };
 

@@ -27,8 +27,5 @@ int main(int argc, char** argv)
     std::shared_ptr<IControllerCPU> h = g->getCpu(a, d);
     auto l = g->getRam(a, d);
 
-    ViewAll viewAll;
-    ModelAll modelAll;
-
     return 0;
 }

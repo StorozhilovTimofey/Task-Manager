@@ -2,13 +2,13 @@
 #include "IViewAll.h"
 
 
-std::shared_ptr<IViewCPU> ViewAll1::getCpu()
+std::shared_ptr<IViewCPU> ViewAll::getCpu()
 {
     auto viewCPU = createViewCPU();
     return viewCPU;
 }
 
-std::shared_ptr<IViewRAM> ViewAll1::getRam()
+std::shared_ptr<IViewRAM> ViewAll::getRam()
 {
     auto viewRAM = createViewRAM();
     return viewRAM;

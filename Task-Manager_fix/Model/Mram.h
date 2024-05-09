@@ -2,6 +2,7 @@
 
 #include "IMram.h"
 
+
 class ModelRAM : public IModelRAM
 {
 public:

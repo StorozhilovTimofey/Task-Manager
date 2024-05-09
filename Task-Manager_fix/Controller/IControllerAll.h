@@ -2,8 +2,8 @@
 
 #include "ICram.h"
 #include "ICPUController.h"
-#include "IViewAll.h"
 #include "IModelAll.h"
+#include "IViewAll.h"
 
 
 class IControllerAll

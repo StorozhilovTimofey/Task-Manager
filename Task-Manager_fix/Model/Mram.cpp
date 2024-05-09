@@ -16,6 +16,7 @@ std::string ModelRAM::FirstWord(const std::string& line)
     return word;
 }
 
+
 std::vector<std::string> ModelRAM::GRAMparams(const std::string& path, const std::vector<std::string>& needs)
 {
     std::ifstream file(path); // Файл с нужными данными
@@ -36,6 +37,7 @@ std::vector<std::string> ModelRAM::GRAMparams(const std::string& path, const std
     file.close();
     return result;
 }
+
 
 std::string ModelRAM::PrettyData(std::string& line)
 {
@@ -64,6 +66,7 @@ std::string ModelRAM::PrettyData(std::string& line)
     }
 }
 
+
 std::string ModelRAM::ConvertFloatToString(float& number)
 {
 
@@ -71,6 +74,7 @@ std::string ModelRAM::ConvertFloatToString(float& number)
     oss << number;
     return oss.str();
 }
+
 
 std::string ModelRAM::exec(const char* cmd)
 {
@@ -88,6 +92,7 @@ std::string ModelRAM::exec(const char* cmd)
     return result;
 }
 
+
 void ModelRAM::RemoveLeadingSpaces(std::string& line)
 {
     size_t pos = 0;
@@ -102,6 +107,7 @@ void ModelRAM::RemoveLeadingSpaces(std::string& line)
     line = line.substr(pos); // Обрезание начала строки до pos
 }
 
+
 std::string ModelRAM::GetFirstWord(const std::string& line)
 {
     std::string word; // Результат
@@ -113,6 +119,7 @@ std::string ModelRAM::GetFirstWord(const std::string& line)
     return word;
 }
 
+
 void ModelRAM::CreateFile()
 {
     std::string memoryInfo = exec("sudo dmidecode --type memory"); // Запуск процесса
@@ -121,11 +128,13 @@ void ModelRAM::CreateFile()
     file.close(); // Освобождение памяти
 }
 
+
 void ModelRAM::DeleteFile()
 {
     std::string command = "rm -f " + filePath; // Команда удаления созданного файла
     int result = std::system(command.c_str()); // Ввод команды
 }
+
 
 std::vector<std::string> ModelRAM::AllData()
 {

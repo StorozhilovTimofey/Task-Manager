@@ -1,9 +1,8 @@
 #pragma once
 
-#include <memory>
-
-#include "IMram.h"
 #include "ICPUModel.h"
+#include "IMram.h"
+
 
 class IModelAll
 {

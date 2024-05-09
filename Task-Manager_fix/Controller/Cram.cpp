@@ -1,8 +1,10 @@
 #include "Cram.h"
 
+#include <utility>
+
 
 ControllerRAM::ControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model) :
-    view(view), model(model)
+    view(std::move(view)), model(std::move(model))
 {
 }
 

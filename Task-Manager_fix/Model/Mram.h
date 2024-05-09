@@ -11,6 +11,7 @@ public:
     void CreateFile() override;
     void DeleteFile() override;
     std::vector<std::string> AllData() override;
+
 private:
     std::string FirstWord(const std::string& line); // Возвращает первое слово в строке, без первых пробелов
     std::string PrettyData(std::string& line); // Меняте вывод, просто чтобы приятнее читалось

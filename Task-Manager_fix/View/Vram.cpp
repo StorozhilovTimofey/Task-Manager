@@ -29,8 +29,3 @@ void ViewRAM::ShowRAMParams(const std::vector<std::string> &RAMParams,
     }
     label->setText(text);
 }
-
-
-ViewRAM::~ViewRAM()
-{
-}

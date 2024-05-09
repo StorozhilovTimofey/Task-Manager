@@ -8,7 +8,7 @@
 class ViewCPU : public IViewCPU, public QWidget
 {
 public:
-    ViewCPU(QWidget *parent = 0);
+    ViewCPU(QWidget *parent = nullptr);
 
 public slots:
     void ShowCpuParametres(std::vector<double> input) override; // Тут она должна вывести в консоль параметры

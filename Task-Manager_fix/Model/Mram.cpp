@@ -78,7 +78,7 @@ std::string ModelRAM::ConvertFloatToString(float& number)
 
 std::string ModelRAM::exec(const char* cmd)
 {
-    std::array<char, 128> buffer; // Массив для чтения вывода выполненной команды
+    std::array<char, 128> buffer{}; // Массив для чтения вывода выполненной команды
     std::string result; // Результат выполнения команды
     std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose); // Умный указатель для управления процессом, выполняющим команду
     if (!pipe) // Проверка открытия процесса

@@ -16,7 +16,7 @@ void ControllerData::PrintRAM()
 
 void ControllerData::PrintCPU()
 {
-    std::vector<double> c = this->model->getParametres();
+    std::vector<double> c = this->model->getCpuParametres();
 
     this->view->ShowCpuParametres(c);
 }

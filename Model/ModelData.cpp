@@ -239,7 +239,7 @@ double ModelData::getCpuTemperature()
 }
 
 
-std::vector<double> ModelData::getParametres()
+std::vector<double> ModelData::getCpuParametres()
 {
     std::vector<double> result = {getCurrentCpuFrequency(), getCpuTemperature()};
     return result;

@@ -13,7 +13,7 @@ public:
     
     double getCpuTemperature() override;
     double getCurrentCpuFrequency() override;
-    std::vector<double> getParametres() override;
+    std::vector<double> getCpuParametres() override;
     
 private:
     std::string FirstWord(const std::string& line); // Возвращает первое слово в строке, без первых пробелов

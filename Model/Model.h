@@ -1,3 +1,6 @@
 #include "ModelData.h"
 
-IModelData::Ptr createModel();
+namespace Model
+{
+    IModelData::Ptr create();
+}

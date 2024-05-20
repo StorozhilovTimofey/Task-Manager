@@ -1,6 +1,6 @@
 #include "View.h"
 
-IViewData::Ptr createView()
+IViewData::Ptr View::create()
 {
     return std::make_shared<ViewData>();
 }

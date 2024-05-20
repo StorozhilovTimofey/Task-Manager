@@ -1,6 +1,6 @@
 #include "Model.h"
 
-IModelData::Ptr createModel()
+IModelData::Ptr Model::create()
 {
     return std::make_shared<ModelData>();
 }

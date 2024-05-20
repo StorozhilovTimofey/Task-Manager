@@ -4,9 +4,9 @@
 
 int main(int argc, char** argv)
 {
-    std::shared_ptr<IModelData> model = createModel(); // Указатель на модь
-    std::shared_ptr<IViewData> view = createView(); // Указатель на вид
-    std::shared_ptr<IControllerData> controller = createController(view, model); // Указатель на контроллер, с принятием других указателей
+    std::shared_ptr<IModelData> model = Model::create(); // Указатель на модь
+    std::shared_ptr<IViewData> view = View::create(); // Указатель на вид
+    std::shared_ptr<IControllerData> controller = Controller::create(view, model); // Указатель на контроллер, с принятием других указателей
 
     controller->Launch1(); // Запуск общих параметров оперативной памяти
     controller->Launch2();

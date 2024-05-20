@@ -1,3 +1,6 @@
 #include "ViewData.h"
 
-IViewData::Ptr createView();
+namespace View
+{
+    IViewData::Ptr create();
+}

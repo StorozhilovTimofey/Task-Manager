@@ -1,7 +1,6 @@
 #include "Controller.h"
-#include "Cram.h"
 
-IControllerRAM::ICptr createControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model)
+IControllerData::Ptr createController(IViewData::Ptr view, IModelData::Ptr model)
 {
-    return std::make_shared<ControllerRAM>(std::move(view), std::move(model));
+    return std::make_shared<ControllerData>(std::move(view), std::move(model));
 }

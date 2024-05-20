@@ -1,11 +1,11 @@
-#include "Cram.h"
+#include "ControllerData.h"
 
-ControllerRAM::ControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model) :
+ControllerData::ControllerData(IViewData::Ptr view, IModelData::Ptr model) :
     view(view), model(model)
 {
 }
 
-void ControllerRAM::Launch1()
+void ControllerData::Launch1()
 {
     model->CreateFile();
     std::vector<std::string> result_1 = model->GRAMparams(path, needs);
@@ -14,7 +14,7 @@ void ControllerRAM::Launch1()
     model->DeleteFile();
 }
 
-void ControllerRAM::Launch2()
+void ControllerData::Launch2()
 {
     std::vector<double> c = this->model->getParametres();
 

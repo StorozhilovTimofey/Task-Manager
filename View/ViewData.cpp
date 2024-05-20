@@ -2,9 +2,9 @@
 #include <string>
 #include <vector>
 
-#include "Vram.h"
+#include "ViewData.h"
 
-void ViewRAM::ShowRAMParams(const std::vector<std::string> &RAMParams,
+void ViewData::ShowRAMParams(const std::vector<std::string> &RAMParams,
                             const std::vector<std::string>& params)
 {
     for (const auto &param : RAMParams)
@@ -18,11 +18,11 @@ void ViewRAM::ShowRAMParams(const std::vector<std::string> &RAMParams,
     std::cout << std::endl;
 }
 
-ViewRAM::~ViewRAM()
+ViewData::~ViewData()
 {
 }
 
-void ViewRAM::ShowCpuParametres(std::vector<double> input)
+void ViewData::ShowCpuParametres(std::vector<double> input)
 {
     std::cout << "Frequency: " << input[0] << " Hz" << std::endl;
     std::cout << "Temperature: " << input[1] << " C^" << std::endl;

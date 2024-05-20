@@ -4,11 +4,11 @@
 #include <string>
 #include <vector>
 
-class IControllerRAM
+class IControllerData
 {
 public:
     virtual void Launch1() = 0;
     virtual void Launch2() = 0;
-    virtual ~IControllerRAM() = default;
-    using ICptr = std::shared_ptr<IControllerRAM>;
+    virtual ~IControllerData() = default;
+    using Ptr = std::shared_ptr<IControllerData>;
 };

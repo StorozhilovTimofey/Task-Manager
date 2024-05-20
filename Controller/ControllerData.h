@@ -1,16 +1,16 @@
-#include "ICram.h"
-#include "IMram.h"
-#include "IVram.h"
+#include "IControllerData.h"
+#include "IModelData.h"
+#include "IViewData.h"
 
-class ControllerRAM : public IControllerRAM
+class ControllerData : public IControllerData
 {
 public:
-    ControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model); // Конструктор с указателями на интерфейсы model и view
+    ControllerData(IViewData::Ptr view, IModelData::Ptr model); // Конструктор с указателями на интерфейсы model и view
     void Launch1() override; // Функция, которая запускает реализацию проекта, осуществляя связь между всеми компонентами
     void Launch2() override;
 private:
-    IViewRAM::IVptr view;
-    IModelRAM::IMptr model;
+    IViewData::Ptr view;
+    IModelData::Ptr model;
     const std::string path = "/proc/meminfo"; // Путь до файла с информацией об оперативной памяти
     const std::vector<std::string> needs =
     {

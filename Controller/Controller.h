@@ -1,5 +1,3 @@
-#include "ICram.h"
-#include "IVram.h"
-#include "IMram.h"
+#include "ControllerData.h"
 
-IControllerRAM::ICptr createControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model);
+IControllerData::Ptr createController(IViewData::Ptr view, IModelData::Ptr model);

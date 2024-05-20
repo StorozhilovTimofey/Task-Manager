@@ -1,8 +1,8 @@
 #pragma once
 
-#include "IMram.h"
+#include "IModelData.h"
 
-class ModelRAM : public IModelRAM
+class ModelData : public IModelData
 {
 public:
     std::vector<std::string> GRAMparams(const std::string& path,

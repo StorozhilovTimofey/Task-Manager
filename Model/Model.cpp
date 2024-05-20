@@ -1,6 +1,6 @@
 #include "Model.h"
 
-IModelRAM::IMptr createModelRAM()
+IModelData::Ptr createModel()
 {
-    return std::make_shared<ModelRAM>();
+    return std::make_shared<ModelData>();
 }

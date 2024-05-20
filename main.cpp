@@ -4,12 +4,12 @@
 
 int main(int argc, char** argv)
 {
-    std::shared_ptr<IModelRAM> modelRAM = createModelRAM(); // Указатель на модь
-    std::shared_ptr<IViewRAM> viewRAM = createViewRAM(); // Указатель на вид
-    std::shared_ptr<IControllerRAM> controllerRAM = createControllerRAM(viewRAM, modelRAM); // Указатель на контроллер, с принятием других указателей
+    std::shared_ptr<IModelData> model = createModel(); // Указатель на модь
+    std::shared_ptr<IViewData> view = createView(); // Указатель на вид
+    std::shared_ptr<IControllerData> controller = createController(view, model); // Указатель на контроллер, с принятием других указателей
 
-    controllerRAM->Launch1(); // Запуск общих параметров оперативной памяти
-    controllerRAM->Launch2();
+    controller->Launch1(); // Запуск общих параметров оперативной памяти
+    controller->Launch2();
 
     return 0;
 }

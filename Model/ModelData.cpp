@@ -2,10 +2,10 @@
 #include <sstream>
 #include <iostream>
 
-#include "Mram.h"
+#include "ModelData.h"
 
 
-std::string ModelRAM::FirstWord(const std::string& line)
+std::string ModelData::FirstWord(const std::string& line)
 {
     std::string word; // Результат
     for (char ch : line) // Получение слова без пробелов
@@ -16,7 +16,7 @@ std::string ModelRAM::FirstWord(const std::string& line)
     return word;
 }
 
-std::vector<std::string> ModelRAM::GRAMparams(const std::string& path, const std::vector<std::string>& needs)
+std::vector<std::string> ModelData::GRAMparams(const std::string& path, const std::vector<std::string>& needs)
 {
     std::ifstream file(path); // Файл с нужными данными
     std::string line; // Строка из файла
@@ -37,7 +37,7 @@ std::vector<std::string> ModelRAM::GRAMparams(const std::string& path, const std
     return result;
 }
 
-std::string ModelRAM::PrettyData(std::string& line)
+std::string ModelData::PrettyData(std::string& line)
 {
     std::string result;
     std::string word; // Слово в строке
@@ -64,7 +64,7 @@ std::string ModelRAM::PrettyData(std::string& line)
     }
 }
 
-std::string ModelRAM::ConvertFloatToString(float& number)
+std::string ModelData::ConvertFloatToString(float& number)
 {
 
     std::ostringstream oss;
@@ -72,7 +72,7 @@ std::string ModelRAM::ConvertFloatToString(float& number)
     return oss.str();
 }
 
-std::string ModelRAM::exec(const char* cmd)
+std::string ModelData::exec(const char* cmd)
 {
     std::array<char, 128> buffer; // Массив для чтения вывода выполненной команды
     std::string result; // Результат выполнения команды
@@ -88,7 +88,7 @@ std::string ModelRAM::exec(const char* cmd)
     return result;
 }
 
-void ModelRAM::RemoveLeadingSpaces(std::string& line)
+void ModelData::RemoveLeadingSpaces(std::string& line)
 {
     size_t pos = 0;
     for (size_t i = 0; i < line.length(); i++)
@@ -102,7 +102,7 @@ void ModelRAM::RemoveLeadingSpaces(std::string& line)
     line = line.substr(pos); // Обрезание начала строки до pos
 }
 
-std::string ModelRAM::GetFirstWord(const std::string& line)
+std::string ModelData::GetFirstWord(const std::string& line)
 {
     std::string word; // Результат
     for (char ch : line)
@@ -113,7 +113,7 @@ std::string ModelRAM::GetFirstWord(const std::string& line)
     return word;
 }
 
-void ModelRAM::CreateFile()
+void ModelData::CreateFile()
 {
     std::string memoryInfo = exec("sudo dmidecode --type memory"); // Запуск процесса
     std::ofstream file(filePath); // Файл, куда записывается результат процесса
@@ -121,13 +121,13 @@ void ModelRAM::CreateFile()
     file.close(); // Освобождение памяти
 }
 
-void ModelRAM::DeleteFile()
+void ModelData::DeleteFile()
 {
     std::string command = "rm -f " + filePath; // Команда удаления созданного файла
     int result = std::system(command.c_str()); // Ввод команды
 }
 
-std::vector<std::string> ModelRAM::AllData()
+std::vector<std::string> ModelData::AllData()
 {
     std::vector<std::string> result; // Результат
     result.push_back("\n#" + std::to_string(counter) + ":"); // Обозначение первой плашки оперативы
@@ -172,7 +172,7 @@ std::vector<std::string> ModelRAM::AllData()
 }
 
 // Функция для чтения текущей частоты процессора из файла /proc/cpuinfo
-double ModelRAM::getCurrentCpuFrequency()
+double ModelData::getCurrentCpuFrequency()
 {
     std::ifstream cpuinfoFile("/proc/cpuinfo");
     if (!cpuinfoFile.is_open())
@@ -208,7 +208,7 @@ double ModelRAM::getCurrentCpuFrequency()
 
 // Функция для чтения содержимого всего файла и возврата его в виде одной строки
 // Вернет пустую строку в случае ошибки
-std::string ModelRAM::readFromFile(const std::string &filePath)
+std::string ModelData::readFromFile(const std::string &filePath)
 {
     std::ifstream file(filePath);
     if (!file.is_open())
@@ -223,7 +223,7 @@ std::string ModelRAM::readFromFile(const std::string &filePath)
 }
 
 
-double ModelRAM::getCpuTemperature()
+double ModelData::getCpuTemperature()
 {
     std::string tempStr = readFromFile("/sys/class/thermal/thermal_zone0/temp");
     if (tempStr.empty())
@@ -239,7 +239,7 @@ double ModelRAM::getCpuTemperature()
 }
 
 
-std::vector<double> ModelRAM::getParametres()
+std::vector<double> ModelData::getParametres()
 {
     std::vector<double> result = {getCurrentCpuFrequency(), getCpuTemperature()};
     return result;

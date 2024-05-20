@@ -1,6 +1,6 @@
 #include "View.h"
 
-IViewRAM::IVptr createViewRAM()
+IViewData::Ptr createView()
 {
-    return std::make_shared<ViewRAM>();
+    return std::make_shared<ViewData>();
 }

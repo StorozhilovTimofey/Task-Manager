@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-class IModelRAM
+class IModelData
 {
 public:
     virtual std::vector<std::string> GRAMparams(const std::string& path,
@@ -15,7 +15,7 @@ public:
     virtual double getCpuTemperature() = 0;
     virtual double getCurrentCpuFrequency() = 0;
     virtual std::vector<double> getParametres() = 0;
-    virtual ~IModelRAM() = default;
+    virtual ~IModelData() = default;
     
-    using IMptr = std::shared_ptr<IModelRAM>;
+    using Ptr = std::shared_ptr<IModelData>;
 };

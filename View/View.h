@@ -1,3 +1,3 @@
-#include "Vram.h"
+#include "ViewData.h"
 
-IViewRAM::IVptr createViewRAM();
+IViewData::Ptr createView();

@@ -1,3 +1,3 @@
-#include "Mram.h"
+#include "ModelData.h"
 
-IModelRAM::IMptr createModelRAM();
+IModelData::Ptr createModel();

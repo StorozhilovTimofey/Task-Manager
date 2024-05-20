@@ -16,7 +16,7 @@ std::string ModelData::FirstWord(const std::string& line)
     return word;
 }
 
-std::vector<std::string> ModelData::GRAMparams(const std::string& path, const std::vector<std::string>& needs)
+std::vector<std::string> ModelData::getRamGeneral(const std::string& path, const std::vector<std::string>& needs)
 {
     std::ifstream file(path); // Файл с нужными данными
     std::string line; // Строка из файла
@@ -127,7 +127,7 @@ void ModelData::DeleteFile()
     int result = std::system(command.c_str()); // Ввод команды
 }
 
-std::vector<std::string> ModelData::AllData()
+std::vector<std::string> ModelData::getRamSpecific()
 {
     std::vector<std::string> result; // Результат
     result.push_back("\n#" + std::to_string(counter) + ":"); // Обозначение первой плашки оперативы

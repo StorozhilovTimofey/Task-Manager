@@ -5,16 +5,16 @@ ControllerData::ControllerData(IViewData::Ptr view, IModelData::Ptr model) :
 {
 }
 
-void ControllerData::Launch1()
+void ControllerData::PrintRAM()
 {
     model->CreateFile();
-    std::vector<std::string> result_1 = model->GRAMparams(path, needs);
-    std::vector<std::string> result_2 = model->AllData();
-    view->ShowRAMParams(result_1, result_2);
+    std::vector<std::string> ramG = model->getRamGeneral(path, needs);
+    std::vector<std::string> ramS = model->getRamSpecific();
+    view->ShowRamParametres(ramG, ramS);
     model->DeleteFile();
 }
 
-void ControllerData::Launch2()
+void ControllerData::PrintCPU()
 {
     std::vector<double> c = this->model->getParametres();
 

@@ -4,7 +4,7 @@
 
 #include "ViewData.h"
 
-void ViewData::ShowRAMParams(const std::vector<std::string> &RAMParams,
+void ViewData::ShowRamParametres(const std::vector<std::string> &RAMParams,
                             const std::vector<std::string>& params)
 {
     for (const auto &param : RAMParams)

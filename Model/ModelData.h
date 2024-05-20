@@ -8,13 +8,13 @@ public:
     std::vector<std::string> getRamGeneral(const std::string& path,
                                     const std::vector<std::string>& needs) override; // Функция, считывающая в вектор данные об оперативе
     std::vector<std::string> getRamSpecific() override;
+    void CreateFile() override;
+    void DeleteFile() override;
     
     double getCpuTemperature() override;
     double getCurrentCpuFrequency() override;
-    
     std::vector<double> getParametres() override;
-    void CreateFile() override;
-    void DeleteFile() override;
+    
 private:
     std::string FirstWord(const std::string& line); // Возвращает первое слово в строке, без первых пробелов
     std::string PrettyData(std::string& line); // Меняте вывод, просто чтобы приятнее читалось

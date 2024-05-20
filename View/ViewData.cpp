@@ -18,10 +18,6 @@ void ViewData::ShowRamParametres(const std::vector<std::string> &RAMParams,
     std::cout << std::endl;
 }
 
-ViewData::~ViewData()
-{
-}
-
 void ViewData::ShowCpuParametres(std::vector<double> input)
 {
     std::cout << "Frequency: " << input[0] << " Hz" << std::endl;

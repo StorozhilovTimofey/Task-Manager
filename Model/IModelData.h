@@ -12,9 +12,11 @@ public:
     virtual std::vector<std::string> getRamSpecific() = 0;
     virtual void CreateFile() = 0;
     virtual void DeleteFile() = 0;
+
     virtual double getCpuTemperature() = 0;
     virtual double getCurrentCpuFrequency() = 0;
     virtual std::vector<double> getParametres() = 0;
+    
     virtual ~IModelData() = default;
     
     using Ptr = std::shared_ptr<IModelData>;

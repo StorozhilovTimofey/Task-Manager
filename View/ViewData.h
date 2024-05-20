@@ -8,5 +8,4 @@ public:
     void ShowRamParametres(const std::vector<std::string>& RAMParams,
                        const std::vector<std::string>& params) override;
     void ShowCpuParametres(std::vector<double> input) override; // Тут она должна вывести в консоль параметры
-    ~ViewData();
 };

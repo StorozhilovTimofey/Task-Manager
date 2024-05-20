@@ -7,6 +7,11 @@ class ModelRAM : public IModelRAM
 public:
     std::vector<std::string> GRAMparams(const std::string& path,
                                     const std::vector<std::string>& needs) override; // Функция, считывающая в вектор данные об оперативе
+
+    double getCpuTemperature() override;
+    double getCurrentCpuFrequency() override;
+    
+    std::vector<double> getParametres() override;
     void CreateFile() override;
     void DeleteFile() override;
     std::vector<std::string> AllData() override;
@@ -17,6 +22,8 @@ private:
     std::string exec(const char* cmd); // Запускает ввод консольной команды для обнаружения данных
     void RemoveLeadingSpaces(std::string& line); // Удаляет первые пробелы в строке
     std::string GetFirstWord(const std::string& line); // Возвращает первое слово в строке
+
+    static std::string readFromFile(const std::string &filePath);
 
     const std::vector<std::string> lineStarts =
     {

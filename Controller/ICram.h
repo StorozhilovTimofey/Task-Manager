@@ -7,7 +7,8 @@
 class IControllerRAM
 {
 public:
-    virtual void Launch() = 0;
+    virtual void Launch1() = 0;
+    virtual void Launch2() = 0;
     virtual ~IControllerRAM() = default;
     using ICptr = std::shared_ptr<IControllerRAM>;
 };

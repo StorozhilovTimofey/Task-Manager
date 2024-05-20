@@ -21,3 +21,9 @@ void ViewRAM::ShowRAMParams(const std::vector<std::string> &RAMParams,
 ViewRAM::~ViewRAM()
 {
 }
+
+void ViewRAM::ShowCpuParametres(std::vector<double> input)
+{
+    std::cout << "Frequency: " << input[0] << " Hz" << std::endl;
+    std::cout << "Temperature: " << input[1] << " C^" << std::endl;
+}

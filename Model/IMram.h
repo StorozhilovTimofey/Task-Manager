@@ -12,6 +12,10 @@ public:
     virtual void CreateFile() = 0;
     virtual void DeleteFile() = 0;
     virtual std::vector<std::string> AllData() = 0;
+    virtual double getCpuTemperature() = 0;
+    virtual double getCurrentCpuFrequency() = 0;
+    virtual std::vector<double> getParametres() = 0;
     virtual ~IModelRAM() = default;
+    
     using IMptr = std::shared_ptr<IModelRAM>;
 };

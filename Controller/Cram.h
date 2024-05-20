@@ -6,7 +6,8 @@ class ControllerRAM : public IControllerRAM
 {
 public:
     ControllerRAM(IViewRAM::IVptr view, IModelRAM::IMptr model); // Конструктор с указателями на интерфейсы model и view
-    void Launch() override; // Функция, которая запускает реализацию проекта, осуществляя связь между всеми компонентами
+    void Launch1() override; // Функция, которая запускает реализацию проекта, осуществляя связь между всеми компонентами
+    void Launch2() override;
 private:
     IViewRAM::IVptr view;
     IModelRAM::IMptr model;

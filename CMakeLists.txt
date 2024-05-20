@@ -17,12 +17,11 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 set(PROJECT_SOURCES
 		main.cpp
 		Model/Mram.cpp
-		Model/CPUModel.cpp
+        Model/Model.cpp
 		View/Vram.cpp
-		View/CPUView.cpp
+        View/View.cpp
 		Controller/Cram.cpp
         Controller/Controller.cpp
-		Controller/CPUController.cpp
 )
 
 

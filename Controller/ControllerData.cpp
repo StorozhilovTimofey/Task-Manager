@@ -1,9 +1,25 @@
 #include "ControllerData.h"
 
+
+namespace
+{
+const std::string path = "/proc/meminfo";
+const std::vector<std::string> needs =
+{
+    "MemTotal:",
+    "MemFree:",
+    "Buffers:",
+    "Cached:"
+};
+
+}
+
+
 ControllerData::ControllerData(IViewData::Ptr view, IModelData::Ptr model) :
     view(view), model(model)
 {
 }
+
 
 void ControllerData::PrintRAM()
 {
@@ -13,6 +29,7 @@ void ControllerData::PrintRAM()
     view->ShowRamParametres(ramG, ramS);
     model->DeleteFile();
 }
+
 
 void ControllerData::PrintCPU()
 {

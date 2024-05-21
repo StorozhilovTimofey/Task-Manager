@@ -16,33 +16,26 @@ public:
     std::vector<double> getCpuParametres() override;
     
 private:
-    std::string FirstWord(const std::string& line); // Возвращает первое слово в строке, без первых пробелов
-    std::string PrettyData(std::string& line); // Меняте вывод, просто чтобы приятнее читалось
-    std::string ConvertFloatToString(float& number); // Переводит дробь в формат строки
-    std::string exec(const char* cmd); // Запускает ввод консольной команды для обнаружения данных
-    void RemoveLeadingSpaces(std::string& line); // Удаляет первые пробелы в строке
-    std::string GetFirstWord(const std::string& line); // Возвращает первое слово в строке
+    //! \brief Возвращает первое слово в строке, без первых пробелов
+    std::string FirstWord(const std::string& line);
+
+    //! \brief Меняте вывод, просто чтобы приятнее читалось
+    std::string PrettyData(std::string& line);
+
+    //! \brief Переводит дробь в формат строки
+    std::string ConvertFloatToString(float& number);
+
+    //! \brief Запускает ввод консольной команды для обнаружения данных
+    std::string exec(const char* cmd);
+
+    //! \brief Удаляет первые пробелы в строке
+    void RemoveLeadingSpaces(std::string& line);
+
+    //! \brief Возвращает первое слово в строке
+    std::string GetFirstWord(const std::string& line);
 
     static std::string readFromFile(const std::string &filePath);
 
-    const std::vector<std::string> lineStarts =
-    {
-    "Size: ",
-    "Type: ",
-    "Speed: ",
-    "Manufacturer: ",
-    "Serial Number: "
-    }; // Нужные параметры для вывода
-
-    const std::vector<std::string> ignoredStarts =
-    {
-    "Size: No Module Installed",
-    "Type: Unknown",
-    "Speed: Unknown",
-    "Manufacturer: Not Specified",
-    "Serial Number: Not Specified"
-    }; // Параметры пустых слотов оперативной памяти, которые должны быть проигнорированы
-
-    const std::string filePath = "memory_info.txt"; // Путь до создаваемого файла
+     // Путь до создаваемого файла
     int counter = 1; // Счетчик плашек оперативной памяти
 };

@@ -2,6 +2,7 @@
 #include "IModelData.h"
 #include "IViewData.h"
 
+
 class ControllerData : public IControllerData
 {
 public:
@@ -11,12 +12,4 @@ public:
 private:
     IViewData::Ptr view;
     IModelData::Ptr model;
-    const std::string path = "/proc/meminfo";
-    const std::vector<std::string> needs =
-    {
-        "MemTotal:",
-        "MemFree:",
-        "Buffers:",
-        "Cached:"
-    };
 };

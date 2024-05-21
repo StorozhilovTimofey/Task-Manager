@@ -2,7 +2,9 @@
 #include <string>
 #include <vector>
 
+
 #include "ViewData.h"
+
 
 void ViewData::ShowRamParametres(const std::vector<std::string> &RAMParams,
                             const std::vector<std::string>& params)
@@ -17,6 +19,7 @@ void ViewData::ShowRamParametres(const std::vector<std::string> &RAMParams,
     }
     std::cout << std::endl;
 }
+
 
 void ViewData::ShowCpuParametres(std::vector<double> input)
 {

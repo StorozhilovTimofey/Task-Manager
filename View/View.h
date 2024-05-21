@@ -2,5 +2,5 @@
 
 namespace View
 {
-    IViewData::Ptr create();
+IViewData::Ptr create();
 }

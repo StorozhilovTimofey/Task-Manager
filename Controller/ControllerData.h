@@ -1,3 +1,5 @@
+#pragma once
+
 #include "IControllerData.h"
 #include "IModelData.h"
 #include "IViewData.h"

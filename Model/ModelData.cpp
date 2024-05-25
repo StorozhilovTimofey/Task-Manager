@@ -53,7 +53,10 @@ namespace
     //! \brief Возвращает первое слово в строке
     std::string GetFirstWord(const std::string& line);
 
-    static std::string readFromFile(const std::string &filePath);
+    std::string readFromFile(const std::string &filePath);
+
+    //! \brief Если нужная информация найдена, то дополняет вектор result информацией о RAM
+    std::vector<std::string> GetFileLine(std::string &line, std::string prevLine, std::vector<std::string> result);
 
     // Путь до создаваемого файла
     int counter = 1; // Счетчик плашек оперативной памяти
@@ -166,6 +169,26 @@ namespace
         buffer << file.rdbuf();
         return buffer.str();
     }
+
+
+    std::vector<std::string> GetFileLine(std::string &line, std::string prevLine, std::vector<std::string> result)
+    {
+        for (const std::string& elem : lineStarts)
+        {
+            if (line.compare(0, elem.length(), elem) == 0)
+            {
+                if (GetFirstWord(prevLine) == "Serial")
+                {
+                    counter++;
+                    result.push_back("\n#" + std::to_string(counter) + ":");
+                }
+                prevLine = line;
+                result.push_back(line);
+                break;
+            }
+        }
+        return result;
+    }
 } // End of namespace
 
 
@@ -230,20 +253,7 @@ std::vector<std::string> ModelData::getRamSpecific()
                 }
             }
             if (isIgnored) { continue; }
-            for (const std::string& elem : lineStarts)
-            {
-                if (line.compare(0, elem.length(), elem) == 0)
-                {
-                    if (GetFirstWord(prevLine) == "Serial")
-                    {
-                        counter++;
-                        result.push_back("\n#" + std::to_string(counter) + ":");
-                    }
-                    prevLine = line;
-                    result.push_back(line);
-                    break;
-                }
-            }
+            result = GetFileLine(line, prevLine, result);
         }
         file.close();
     }
@@ -274,7 +284,6 @@ double ModelData::getCurrentCpuFrequency()
                 size_t firstDigitPos = frequencyStr.find_first_of("0123456789");
                 if (firstDigitPos != std::string::npos)
                 {
-
                     return std::stod(frequencyStr.substr(firstDigitPos));
                 }
             }

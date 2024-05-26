@@ -27,168 +27,138 @@ const std::vector<std::string> ignoredStarts =
     "Serial Number: Not Specified"
 };
 
+//! \brief Путь до файла с данными по оперативной памяти
 const std::string filePath = "memory_info.txt";
 
-} //end namespace
+//! \brief Счетчик модулей ram
+int counter = 1;
 
-
-namespace
+//! \brief Возвращает первое слово в строке
+std::string FirstWord(const std::string& line)
 {
-    //! \brief Возвращает первое слово в строке, без первых пробелов
-    std::string FirstWord(const std::string& line);
-
-    //! \brief Меняте вывод, просто чтобы приятнее читалось
-    std::string PrettyData(std::string& line);
-
-    //! \brief Переводит дробь в формат строки
-    std::string ConvertFloatToString(float& number);
-
-    //! \brief Запускает ввод консольной команды для обнаружения данных
-    std::string exec(const char* cmd);
-
-    //! \brief Удаляет первые пробелы в строке
-    void RemoveLeadingSpaces(std::string& line);
-
-    //! \brief Возвращает первое слово в строке
-    std::string GetFirstWord(const std::string& line);
-
-    std::string readFromFile(const std::string &filePath);
-
-    //! \brief Если нужная информация найдена, то дополняет вектор result информацией о RAM
-    std::vector<std::string> GetFileLine(std::string &line, std::string prevLine, std::vector<std::string> result);
-
-    // Путь до создаваемого файла
-    int counter = 1; // Счетчик плашек оперативной памяти
-} //end namespace
+    std::string word;
+    for (char ch : line)
+    {
+        if (ch == ' ') { return word; }
+        else { word += ch; }
+    }
+    return word;
+}
 
 
-namespace
+std::string ConvertFloatToString(float& number)
 {
-    std::string FirstWord(const std::string& line)
+    std::ostringstream oss;
+    oss << number;
+    return oss.str();
+}
+
+//! \brief Меняте вывод на более понятный
+std::string PrettyData(std::string& line)
+{
+    std::string result;
+    std::string word;
+    float number;
+    std::istringstream iss(line);
+    iss >> word >> number;
+    number /= 1048576;
+    if (word == "MemTotal:")
     {
-        std::string word;
-        for (char ch : line)
-        {
-            if (ch == ' ') { return word; }
-            else { word += ch; }
-        }
-        return word;
-    }
-
-
-    std::string PrettyData(std::string& line)
-    {
-        std::string result;
-        std::string word;
-        float number;
-        std::istringstream iss(line);
-        iss >> word >> number;
-        number /= 1048576;
-        if (word == "MemTotal:")
-        {
-            result = "Total Memory: " + ConvertFloatToString(number) + " GB";
-            return result;
-        }
-        else if (word == "MemFree:")
-        {
-            result = "Free Memory: " + ConvertFloatToString(number) + " GB";
-            return result;
-        }
-        else
-        {
-            number *= 1024;
-            result = word + " " + ConvertFloatToString(number) + " MB";
-            return result;
-        }
-    }
-
-
-    std::string ConvertFloatToString(float& number)
-    {
-        std::ostringstream oss;
-        oss << number;
-        return oss.str();
-    }
-
-
-    std::string exec(const char* cmd)
-    {
-        std::array<char, 128> buffer;
-        std::string result;
-        std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
-        if (!pipe)
-        {
-            throw std::runtime_error("popen() failed!");
-        }
-        while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr)
-        {
-            result += buffer.data();
-        }
+        result = "Total Memory: " + ConvertFloatToString(number) + " GB";
         return result;
     }
-
-
-    void RemoveLeadingSpaces(std::string& line)
+    else if (word == "MemFree:")
     {
-        size_t pos = 0;
-        for (size_t i = 0; i < line.length(); i++)
-        {
-            if (!std::isspace(line.at(i)))
-            {
-                pos = i;
-                break;
-            }
-        }
-        line = line.substr(pos);
-    }
-
-
-    std::string GetFirstWord(const std::string& line)
-    {
-        std::string word;
-        for (char ch : line)
-        {
-            if (ch == ' ') { return word; }
-            else { word += ch; }
-        }
-        return word;
-    }
-
-
-    std::string readFromFile(const std::string &filePath)
-    {
-        std::ifstream file(filePath);
-        if (!file.is_open())
-        {
-            std::cerr << "Failed to open file: " << filePath << std::endl;
-            return "";
-        }
-
-        std::stringstream buffer;
-        buffer << file.rdbuf();
-        return buffer.str();
-    }
-
-
-    std::vector<std::string> GetFileLine(std::string &line, std::string prevLine, std::vector<std::string> result)
-    {
-        for (const std::string& elem : lineStarts)
-        {
-            if (line.compare(0, elem.length(), elem) == 0)
-            {
-                if (GetFirstWord(prevLine) == "Serial")
-                {
-                    counter++;
-                    result.push_back("\n#" + std::to_string(counter) + ":");
-                }
-                prevLine = line;
-                result.push_back(line);
-                break;
-            }
-        }
+        result = "Free Memory: " + ConvertFloatToString(number) + " GB";
         return result;
     }
-} // End of namespace
+    else
+    {
+        number *= 1024;
+        result = word + " " + ConvertFloatToString(number) + " MB";
+        return result;
+    }
+}
+
+//! \brief Запускает ввод консольной команды для обнаружения данных ram
+std::string exec(const char* cmd)
+{
+    std::array<char, 128> buffer;
+    std::string result;
+    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+    if (!pipe)
+    {
+        throw std::runtime_error("popen() failed!");
+    }
+    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr)
+    {
+        result += buffer.data();
+    }
+    return result;
+}
+
+
+void RemoveLeadingSpaces(std::string& line)
+{
+    size_t pos = 0;
+    for (size_t i = 0; i < line.length(); i++)
+    {
+        if (!std::isspace(line.at(i)))
+        {
+            pos = i;
+            break;
+        }
+    }
+    line = line.substr(pos);
+}
+
+
+std::string GetFirstWord(const std::string& line)
+{
+    std::string word;
+    for (char ch : line)
+    {
+        if (ch == ' ') { return word; }
+        else { word += ch; }
+    }
+    return word;
+}
+
+
+std::string readFromFile(const std::string &filePath)
+{
+    std::ifstream file(filePath);
+    if (!file.is_open())
+    {
+        std::cerr << "Failed to open file: " << filePath << std::endl;
+        return "";
+    }
+
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    return buffer.str();
+}
+
+
+std::vector<std::string> GetFileLine(std::string &line, std::string prevLine, std::vector<std::string> result)
+{
+    for (const std::string& elem : lineStarts)
+    {
+        if (line.compare(0, elem.length(), elem) == 0)
+        {
+            if (GetFirstWord(prevLine) == "Serial")
+            {
+                counter++;
+                result.push_back("\n#" + std::to_string(counter) + ":");
+            }
+            prevLine = line;
+            result.push_back(line);
+            break;
+        }
+    }
+    return result;
+}
+} // end namespace
 
 
 std::vector<std::string> ModelData::getRamGeneral(const std::string& path,

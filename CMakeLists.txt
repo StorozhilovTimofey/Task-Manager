@@ -16,12 +16,24 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
 
 set(PROJECT_SOURCES
 		main.cpp
+
 		Model/ModelData.cpp
         Model/Model.cpp
+        Model/Model.h
+        Model/ModelData.h
+        Model/IModelData.h
+
 		View/ViewData.cpp
         View/View.cpp
+        View/View.h
+        View/ViewData.h
+        View/IViewData.h
+
 		Controller/ControllerData.cpp
         Controller/Controller.cpp
+        Controller/Controller.h
+        Controller/IControllerData.h
+        Controller/ControllerData.h
 )
 
 
@@ -48,13 +60,6 @@ else()
         )
     endif()
 endif()
-
-
-target_include_directories(Tasks-Manager PRIVATE
-		${PROJECT_SOURCE_DIR}/Controller
-		${PROJECT_SOURCE_DIR}/Model
-		${PROJECT_SOURCE_DIR}/View
-)
 
 
 target_link_libraries(Tasks-Manager PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

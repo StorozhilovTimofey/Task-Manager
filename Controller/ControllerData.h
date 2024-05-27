@@ -1,8 +1,8 @@
 #pragma once
 
 #include "IControllerData.h"
-#include "IModelData.h"
-#include "IViewData.h"
+#include "Model/IModelData.h"
+#include "View/IViewData.h"
 
 
 class ControllerData : public IControllerData

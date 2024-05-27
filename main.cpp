@@ -1,10 +1,9 @@
 #include <QApplication>
 
-#include "View/MainWindow.h"
-
-#include "Model/Model.h"
-#include "View/View.h"
-#include "Controller/Controller.h"
+#include "Controller.h"
+#include "MainWindow.h"
+#include "Model.h"
+#include "View.h"
 
 
 int main(int argc, char** argv)

@@ -1,13 +1,9 @@
 #pragma once
 
-#include <QApplication>
-#include <QWidget>
 #include <QLabel>
 #include <QVBoxLayout>
-#include <vector>
-#include <string>
 
-#include "Model/IModelData.h"
+#include "IModelData.h"
 
 class MainWindow : public QWidget
 {

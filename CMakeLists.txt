@@ -30,7 +30,7 @@ set(PROJECT_SOURCES
         View/IViewData.h
 
         View/MainWindow.h
-#        View/MainWindow.cpp
+        View/MainWindow.cpp
 
         Controller/ControllerData.cpp
         Controller/Controller.cpp

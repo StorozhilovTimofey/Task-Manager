@@ -19,6 +19,7 @@ int main(int argc, char** argv)
     controller->PrintRAM();
     controller->PrintCPU();
 
+    window.display();
     window.show();
 
     return app.exec();

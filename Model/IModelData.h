@@ -13,8 +13,7 @@ class IModelData
 {
 public:
     //! \brief Возвращает вектор с общими данными ram
-    virtual std::vector<std::string> getRamGeneral(const std::string& path,
-                                            const std::vector<std::string>& needs) = 0;
+    virtual std::vector<std::string> getRamGeneral() = 0;
     
     //! \brief Возвращает вектор с данными по модулям ram
     virtual std::vector<std::string> getRamSpecific() = 0;

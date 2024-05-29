@@ -1,20 +1,6 @@
 #include "ControllerData.h"
 
 
-namespace
-{
-const std::string path = "/proc/meminfo";
-const std::vector<std::string> needs =
-{
-    "MemTotal:",
-    "MemFree:",
-    "Buffers:",
-    "Cached:"
-};
-
-}
-
-
 ControllerData::ControllerData(IViewData::Ptr view, IModelData::Ptr model) :
     view(view), model(model)
 {
@@ -24,7 +10,7 @@ ControllerData::ControllerData(IViewData::Ptr view, IModelData::Ptr model) :
 void ControllerData::PrintRAM()
 {
     model->CreateFile();
-    std::vector<std::string> ramG = model->getRamGeneral(path, needs);
+    std::vector<std::string> ramG = model->getRamGeneral();
     std::vector<std::string> ramS = model->getRamSpecific();
     view->ShowRamParametres(ramG, ramS);
     model->DeleteFile();

@@ -7,6 +7,15 @@
 
 namespace
 {
+const std::string path = "/proc/meminfo";
+const std::vector<std::string> needs =
+{
+    "MemTotal:",
+    "MemFree:",
+    "Buffers:",
+    "Cached:"
+};
+
 //! \brief Выводимые параметры
 const std::vector<std::string> lineStarts =
 {
@@ -140,8 +149,8 @@ std::string readFromFile(const std::string &filePath)
 }
 
 
-std::vector<std::string> GetFileLine(std::string &line, std::string prevLine, std::vector<std::string> result)
-{
+std::vector<std::string> GetFileLine(std::string &line, std::string &prevLine, std::vector<std::string>& result)
+{   
     for (const std::string& elem : lineStarts)
     {
         if (line.compare(0, elem.length(), elem) == 0)
@@ -161,8 +170,7 @@ std::vector<std::string> GetFileLine(std::string &line, std::string prevLine, st
 } // end namespace
 
 
-std::vector<std::string> ModelData::getRamGeneral(const std::string& path,
-                                                  const std::vector<std::string>& needs)
+std::vector<std::string> ModelData::getRamGeneral()
 {
     std::ifstream file(path);
     std::string line;

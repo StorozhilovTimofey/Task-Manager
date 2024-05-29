@@ -14,6 +14,7 @@ void ViewData::ShowRamParametres(const std::vector<std::string> &RAMParams,
     {
         std::cout << param << std::endl;
     }
+    
     std::cout << std::endl;
 }
 
